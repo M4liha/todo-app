@@ -9,13 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
-      OWNER: "M4liha"                # le propriétaire du jeton (votre compte)
-      PROJECT_NUMBER: 4          # ⚠️ remplacer par le numéro de VOTRE projet
+      OWNER: "M4liha"
+      PROJECT_NUMBER: 4
       ISSUE_URL: ${{ github.event.issue.html_url }}
     steps:
       - name: Déplacer la carte dans In Progress
         run: |
           # 0. Vérifier le jeton : affiche ses permissions ou l'erreur exacte
+          echo "Propriétaire du jeton :"
+          gh api user --jq .login
           echo "Permissions du jeton :"
           gh api -i user | grep -i '^x-oauth-scopes'
 
